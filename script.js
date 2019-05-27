@@ -1,5 +1,5 @@
 window.onload = function () {
-    var todoList = [];
+    var todoList = ["Один", "Два", "Три", "Четыре"];
     OutTask();
     document.getElementById("add").onclick = function () {
         let text = document.getElementById("text").value;
@@ -13,7 +13,7 @@ window.onload = function () {
         let OutText = "";
         elem = document.getElementById("out");
         for (let key = 0; key < todoList.length; key++) {
-            OutText += todoList[key] + '<br>';
+            OutText += '<div>' + todoList[key] + '</div>' + '<br>';
         }
         elem.innerHTML = OutText;
 
