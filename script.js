@@ -1,21 +1,23 @@
 window.onload = function () {
-    var todoList = ["Один", "Два", "Три", "Четыре"];
+    let todoList = ["Один", "Два", "Три", "Четыре"];
+    elem = document.getElementById("out"); // div для вывод
+    button = document.getElementById("add");
+    button.addEventListener("click", onclick);
     OutTask();
-    document.getElementById("add").onclick = function () {
+
+    function onclick() {
         let text = document.getElementById("text").value;
-        let i = todoList.length;
-        todoList[i] = text;
+        todoList.push(text);
+        console.log(text)
         OutTask();
-        //console.log(text);
     }
 
     function OutTask() {
-        let OutText = "";
-        elem = document.getElementById("out");
         for (let key = 0; key < todoList.length; key++) {
-            OutText += '<div>' + todoList[key] + '</div>' + '<br>';
+            let div = document.createElement('div');
+            div.className = "div-out";
+            div.innerText = todoList[key];
+            elem.appendChild(div);
         }
-        elem.innerHTML = OutText;
-
     }
 }
