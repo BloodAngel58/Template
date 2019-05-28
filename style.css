@@ -1,23 +1,25 @@
 .input-task {
     display: flex;
-    flex-direction: row;
-    margin: 10px;
+    justify-content: center;
+    padding: 10px;
 }
 
 .single-todo {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     background-color: cadetblue;
-    margin: 10px;
-    padding: 10px;
+    margin: 5px;
+    padding: 5px;
 }
 
 .single-todo__text {
     margin: 10px;
     padding: 10px;
+    justify-content: left;
 }
 
 .single-todo__date {
     margin: 10px;
     padding: 10px;
+    justify-content: right;
 }
