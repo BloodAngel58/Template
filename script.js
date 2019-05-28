@@ -59,12 +59,15 @@ function updatCheck(event) {
   if (target.type == "checkbox") {
     checkBox = target.value;
     console.log(checkBox);
+    console.log(this.tagName);
     if ((checkBox = true)) {
-      this.parentNode.classList.toggle("responded");
+      this.classList.toggle("responded");
+      //this.parentNode.classList.toggle("responded");
       console.log(this.parentNode);
     }
   }
 }
+
 buttonAddTask.addEventListener("click", onclick);
 
 window.onload = function() {
