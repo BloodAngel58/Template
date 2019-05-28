@@ -24,12 +24,6 @@ function Clear() {
   document.getElementById("date").value = "";
 }
 
-function OutTask() {
-  for (let key = 0; key < todoList.length; key++) {
-    drawing(todoList[key].title, todoList[key].date);
-  }
-}
-
 function drawing(title, date) {
   let divText = document.createElement("div");
   divText.className = "single-todo__text";
@@ -47,5 +41,7 @@ function drawing(title, date) {
 buttonAdd.addEventListener("click", onclick);
 
 window.onload = function() {
-  OutTask();
+  for (let key = 0; key < todoList.length; key++) {
+    drawing(todoList[key].title, todoList[key].date);
+  }
 };
