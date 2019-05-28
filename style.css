@@ -1,0 +1,13 @@
+.div-out {
+    display: flex;
+    flex-direction: column;
+    background-color: cadetblue;
+    margin: 10px;
+    padding: 10px;
+}
+
+.input-task {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
