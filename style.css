@@ -2,14 +2,17 @@
     display: flex;
     justify-content: center;
     padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
 }
 
-.single-todo {
+.single-todo__item {
     display: flex;
     justify-content: space-between;
     background-color: cadetblue;
-    margin: 5px;
-    padding: 5px;
+    margin: 9px;
+    padding: 15px;
+    align-items: baseline;
 }
 
 .single-todo__text {
@@ -22,4 +25,21 @@
     margin: 10px;
     padding: 10px;
     justify-content: right;
+}
+
+.single-todo__check {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    justify-content: left;
+}
+
+body {
+
+    width: 40%;
+    margin: 0 auto;
+}
+
+.responded {
+    background-color: red;
 }
