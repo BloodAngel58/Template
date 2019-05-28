@@ -25,6 +25,8 @@ function Clear() {
 }
 
 function drawing(title, date) {
+  let check = document.createElement("input");
+  check.type = "checkbox";
   let divText = document.createElement("div");
   divText.className = "single-todo__text";
   let divDate = document.createElement("div");
@@ -34,6 +36,7 @@ function drawing(title, date) {
   divText.innerHTML = title;
   divDate.innerHTML = date;
   listItem.appendChild(todoItem);
+  todoItem.appendChild(check);
   todoItem.appendChild(divText);
   todoItem.appendChild(divDate);
 }
