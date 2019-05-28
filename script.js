@@ -28,18 +28,16 @@ function clearInput() {
 
 function drawing(title, date) {
   let check = document.createElement("input");
-  check.type = "checkbox";
-  check.classList.add("single-todo__check");
-
   let divText = document.createElement("div");
-  divText.className = "single-todo__text";
-
   let divDate = document.createElement("div");
-  divDate.classList.add("single-todo__date");
-
   let todoItem = document.createElement("div");
-  todoItem.className = "single-todo__item";
-  todoItem.setAttribute("data_counter", null);
+
+  check.type = "checkbox";
+
+  check.classList.add("single-todo__check");
+  divText.className = "single-todo__text";
+  divDate.classList.add("single-todo__date");
+  todoItem.classList.add("single-todo__item");
 
   divText.innerHTML = title;
   divDate.innerHTML = date;
@@ -52,18 +50,13 @@ function drawing(title, date) {
 
   todoItem.appendChild(divDate);
 }
-listItem.addEventListener("click", updatCheck);
+document.querySelector(".listItem").addEventListener("click", updatCheck, true);
+
 function updatCheck(event) {
-  let checkBox;
   let target = event.target;
   if (target.type == "checkbox") {
-    checkBox = target.value;
-    console.log(checkBox);
-    console.log(this.tagName);
-    if ((checkBox = true)) {
-      this.classList.toggle("responded");
-      //this.parentNode.classList.toggle("responded");
-      console.log(this.parentNode);
+    if ((target.value = true)) {
+      target.parentNode.classList.toggle("responded");
     }
   }
 }
