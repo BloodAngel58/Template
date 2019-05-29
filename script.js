@@ -1,41 +1,47 @@
 const todoList = [
-  { title: "Попить кофе", date: "2019-05-03" },
-  { title: "Погладить кота", date: "2019-05-30" },
-  { title: "Накормить кота", date: "2019-05-01" },
-  { title: "Уложить спать кота", date: "2019-05-09" }
+  { idTask: 1, title: "Попить кофе", date: "2019-05-03" },
+  { idTask: 2, title: "Погладить кота", date: "2019-05-30" },
+  { idTask: 3, title: "Накормить кота", date: "2019-05-01" },
+  { idTask: 4, title: "Уложить спать кота", date: "2019-05-09" }
 ];
 
-let listItem = document.getElementById("todoListItem"); // div для вывод
-let buttonAddTask = document.getElementById("buttonAddTask");
+const listItem = document.getElementById("todoListItem"); // div для вывод
+const buttonAddTask = document.getElementById("buttonAddTask");
+const textInput = document.getElementById("inputTextTask");
+const dateInput = document.getElementById("inputDateTask");
 
-buttonAddTask.addEventListener("click", onclick);
+buttonAddTask.addEventListener("click", addTask);
 document.querySelector(".listItem").addEventListener("click", updatCheck, true);
 
-function onclick() {
-  let title = document.getElementById("inputTextTask").value;
-
-  let date = document.getElementById("inputDateTask").value;
-
+function addTask() {
+  let idTask = ID();
+  let title = textInput.value;
+  let date = dateInput.value;
   todoList.push({
+    idTask,
     title,
     date
   });
 
-  drawing(title, date, todoList.length - 1);
+  drawingItem(title, date, idTask);
   clearInput();
 }
-
+var ID = function() {
+  return Math.random()
+    .toExponential(36)
+    .substr(2, 9);
+};
 function clearInput() {
-  document.getElementById("inputTextTask").value = "";
-  document.getElementById("inputDateTask").value = "";
+  textInput.value = "";
+  dateInput.value = "";
 }
 
-function drawing(title, date, key) {
-  let check = document.createElement("input");
-  let divText = document.createElement("div");
-  let divDate = document.createElement("div");
-  let todoItem = document.createElement("div");
-  let deleteButton = document.createElement("button");
+function drawingItem(title, date, key) {
+  const check = document.createElement("input");
+  const divText = document.createElement("div");
+  const divDate = document.createElement("div");
+  const todoItem = document.createElement("div");
+  const deleteButton = document.createElement("button");
 
   deleteButton.innerHTML = "&#10006";
 
@@ -50,20 +56,17 @@ function drawing(title, date, key) {
   divText.innerHTML = title;
   divDate.innerHTML = date;
 
-  listItem.appendChild(todoItem);
-
   todoItem.appendChild(check);
   todoItem.setAttribute("key", key);
 
   todoItem.appendChild(divText);
-
   todoItem.appendChild(divDate);
-
   todoItem.appendChild(deleteButton);
+  listItem.appendChild(todoItem);
 }
 
 function updatCheck(event) {
-  let target = event.target;
+  const target = event.target;
   if (target.type == "checkbox") {
     if (target.checked) {
       target.parentNode.classList.toggle("todo-item__checked");
@@ -74,17 +77,16 @@ function updatCheck(event) {
   let key = target.parentNode.getAttribute("key");
 
   if (target.type == "submit") {
-    deleteTasks(event, key);
+    deleteTasks(event.target.parentNode, key);
   }
 }
-function deleteTasks(event, key) {
-  let target = event.target;
-  event.target.parentNode.remove();
-  delete todoList[key];
+function deleteTasks(node, key) {
+  node.remove();
+  todoList.splice(todoList.findIndex(item => item.idTask === key), 1);
 }
 
 window.onload = function() {
   for (let key = 0; key < todoList.length; key++) {
-    drawing(todoList[key].title, todoList[key].date, key);
+    drawingItem(todoList[key].title, todoList[key].date, todoList[key].idTask);
   }
 };
