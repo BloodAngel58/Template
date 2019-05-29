@@ -35,6 +35,9 @@ function drawing(title, date) {
   let divText = document.createElement("div");
   let divDate = document.createElement("div");
   let todoItem = document.createElement("div");
+  let deleteButton = document.createElement("button");
+
+  deleteButton.innerHTML = "&#10006";
 
   check.type = "checkbox";
 
@@ -42,6 +45,7 @@ function drawing(title, date) {
   divText.classList.add("single-todo__text");
   divDate.classList.add("single-todo__date");
   todoItem.classList.add("single-todo__item");
+  deleteButton.classList.add("delete-todo__item");
 
   divText.innerHTML = title;
   divDate.innerHTML = date;
@@ -53,6 +57,8 @@ function drawing(title, date) {
   todoItem.appendChild(divText);
 
   todoItem.appendChild(divDate);
+
+  todoItem.appendChild(deleteButton);
 }
 
 function updatCheck(event) {
@@ -64,6 +70,15 @@ function updatCheck(event) {
       target.parentNode.classList.toggle("todo-item__checked");
     }
   }
+  console.log(target.type);
+  if (target.type == "submit") {
+    deleteTasks(event);
+  }
+}
+function deleteTasks(event) {
+  let target = event.target;
+  console.log("hello_22222");
+  event.target.parentNode.remove();
 }
 
 window.onload = function() {
