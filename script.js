@@ -69,9 +69,9 @@ function updatCheck(event) {
   const target = event.target;
   if (target.type == "checkbox") {
     if (target.checked) {
-      target.parentNode.classList.toggle("todo-item__checked");
+      target.parentNode.classList.add("todo-item__checked");
     } else {
-      target.parentNode.classList.toggle("todo-item__checked");
+      target.parentNode.classList.remove("todo-item__checked");
     }
   }
   let key = target.parentNode.getAttribute("key");
