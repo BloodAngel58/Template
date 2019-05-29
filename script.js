@@ -1,11 +1,26 @@
-const todoList = [
-  { idTask: 1, title: "Попить кофе", date: "2019-05-03" },
-  { idTask: 2, title: "Погладить кота", date: "2019-05-30" },
-  { idTask: 3, title: "Накормить кота", date: "2019-05-01" },
-  { idTask: 4, title: "Уложить спать кота", date: "2019-05-09" }
+const todoList = [{
+    idTask: 1,
+    title: "Попить кофе",
+    date: "2019-05-03"
+  },
+  {
+    idTask: 2,
+    title: "Погладить кота",
+    date: "2019-05-30"
+  },
+  {
+    idTask: 3,
+    title: "Накормить кота",
+    date: "2019-05-01"
+  },
+  {
+    idTask: 4,
+    title: "Уложить спать кота",
+    date: "2019-05-09"
+  }
 ];
 
-const listItem = document.getElementById("todoListItem"); // div для вывод
+const listItem = document.getElementById("todoListItem");
 const buttonAddTask = document.getElementById("buttonAddTask");
 const textInput = document.getElementById("inputTextTask");
 const dateInput = document.getElementById("inputDateTask");
@@ -28,16 +43,17 @@ function addTask() {
     drawingItem(title, date, idTask);
     clearInput();
   }
-}
-var ID = function() {
+};
+var ID = function () {
   return Math.random()
     .toExponential(36)
     .substr(2, 9);
 };
+
 function clearInput() {
   textInput.value = "";
   dateInput.value = "";
-}
+};
 
 function drawingItem(title, date, key) {
   const check = document.createElement("input");
@@ -66,7 +82,7 @@ function drawingItem(title, date, key) {
   todoItem.appendChild(divDate);
   todoItem.appendChild(deleteButton);
   listItem.appendChild(todoItem);
-}
+};
 
 function updatCheck(event) {
   const target = event.target;
@@ -82,13 +98,14 @@ function updatCheck(event) {
   if (target.type == "submit") {
     deleteTasks(event.target.parentNode, key);
   }
-}
+};
+
 function deleteTasks(node, key) {
   node.remove();
   todoList.splice(todoList.findIndex(item => item.idTask === key), 1);
-}
+};
 
-window.onload = function() {
+window.onload = function () {
   for (let key = 0; key < todoList.length; key++) {
     drawingItem(todoList[key].title, todoList[key].date, todoList[key].idTask);
   }
