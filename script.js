@@ -4,8 +4,12 @@ const todoList = [
   { title: "Накормить кота", date: "2019-05-01" },
   { title: "Уложить спать кота", date: "2019-05-09" }
 ];
+
 let listItem = document.getElementById("todoListItem"); // div для вывод
 let buttonAddTask = document.getElementById("buttonAddTask");
+
+buttonAddTask.addEventListener("click", onclick);
+document.querySelector(".listItem").addEventListener("click", updatCheck, true);
 
 function onclick() {
   let title = document.getElementById("inputTextTask").value;
@@ -35,7 +39,7 @@ function drawing(title, date) {
   check.type = "checkbox";
 
   check.classList.add("single-todo__check");
-  divText.className = "single-todo__text";
+  divText.classList.add("single-todo__text");
   divDate.classList.add("single-todo__date");
   todoItem.classList.add("single-todo__item");
 
@@ -50,18 +54,17 @@ function drawing(title, date) {
 
   todoItem.appendChild(divDate);
 }
-document.querySelector(".listItem").addEventListener("click", updatCheck, true);
 
 function updatCheck(event) {
   let target = event.target;
   if (target.type == "checkbox") {
-    if ((target.value = true)) {
-      target.parentNode.classList.toggle("responded");
+    if (target.checked) {
+      target.parentNode.classList.toggle("todo-item__checked");
+    } else {
+      target.parentNode.classList.toggle("todo-item__checked");
     }
   }
 }
-
-buttonAddTask.addEventListener("click", onclick);
 
 window.onload = function() {
   for (let key = 0; key < todoList.length; key++) {

@@ -7,6 +7,7 @@
 }
 
 .single-todo__item {
+
     display: flex;
     justify-content: space-between;
     background-color: cadetblue;
@@ -40,6 +41,21 @@ body {
     margin: 0 auto;
 }
 
-.responded {
+.todo-item__checked {
+    position: relative;
+
+}
+
+.single-todo__item.todo-item__checked:after {
+
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 3px;
+    right: 1%;
+    top: 48%;
     background-color: red;
+    align-items: baseline;
+
+
 }
