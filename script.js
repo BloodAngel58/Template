@@ -17,14 +17,17 @@ function addTask() {
   let idTask = ID();
   let title = textInput.value;
   let date = dateInput.value;
-  todoList.push({
-    idTask,
-    title,
-    date
-  });
-
-  drawingItem(title, date, idTask);
-  clearInput();
+  if (title == "" || date == "") {
+    alert("ERROR! Все полня должны быть заполнены");
+  } else {
+    todoList.push({
+      idTask,
+      title,
+      date
+    });
+    drawingItem(title, date, idTask);
+    clearInput();
+  }
 }
 var ID = function() {
   return Math.random()
