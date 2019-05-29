@@ -21,7 +21,7 @@ function onclick() {
     date
   });
 
-  drawing(title, date);
+  drawing(title, date, todoList.length - 1);
   clearInput();
 }
 
@@ -30,7 +30,7 @@ function clearInput() {
   document.getElementById("inputDateTask").value = "";
 }
 
-function drawing(title, date) {
+function drawing(title, date, key) {
   let check = document.createElement("input");
   let divText = document.createElement("div");
   let divDate = document.createElement("div");
@@ -53,6 +53,7 @@ function drawing(title, date) {
   listItem.appendChild(todoItem);
 
   todoItem.appendChild(check);
+  todoItem.setAttribute("key", key);
 
   todoItem.appendChild(divText);
 
@@ -70,24 +71,20 @@ function updatCheck(event) {
       target.parentNode.classList.toggle("todo-item__checked");
     }
   }
-  console.log(target.type);
+  let key = target.parentNode.getAttribute("key");
+
   if (target.type == "submit") {
-    deleteTasks(event);
+    deleteTasks(event, key);
   }
 }
-function deleteTasks(event) {
+function deleteTasks(event, key) {
   let target = event.target;
-  console.log("hello_22222");
   event.target.parentNode.remove();
+  delete todoList[key];
 }
 
 window.onload = function() {
   for (let key = 0; key < todoList.length; key++) {
-    drawing(todoList[key].title, todoList[key].date);
+    drawing(todoList[key].title, todoList[key].date, key);
   }
 };
-/*
-const removeItem = item => {
-  item.parentNode.parentNode.removeChild(item.parentNode);
-};
-*/
