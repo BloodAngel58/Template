@@ -37,7 +37,7 @@
 
 body {
 
-    width: 40%;
+    width: 50%;
     margin: 0 auto;
 }
 
@@ -58,4 +58,12 @@ body {
     align-items: baseline;
 
 
+}
+
+.task-item__sort {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
 }

@@ -15,10 +15,19 @@
         <div>
             <button id="buttonAddTask">Жмякни</button>
         </div>
-    </div>
 
+    </div>
+    <div class="task-item__sort">
+        <select class="div-field selector" id="sortOptions">
+            <option value="">--тип сортировки--</option>
+            <option value="alphabet">по алфавиту</option>
+            <option value="reverseAlpabet">против алфавита</option>
+            <option value="date">недавно добавленные</option>
+            <option value="reverseDate">старые</option>
+        </select>
+    </div>
+    <h1>Todo List</h1>
     <div id="todoListItem" class="listItem">
-        <h1>Todo List</h1>
     </div>
     <script src="script.js"></script>
 </body>

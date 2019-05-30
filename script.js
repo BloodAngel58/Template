@@ -1,23 +1,22 @@
-const todoList = [
-  {
+const todoList = [{
     idTask: 1,
     title: "Попить кофе",
-    date: "2019-05-03"
+    date: "2019-05-01"
   },
   {
     idTask: 2,
     title: "Погладить кота",
-    date: "2019-05-30"
+    date: "2019-05-02"
   },
   {
     idTask: 3,
     title: "Накормить кота",
-    date: "2019-05-01"
+    date: "2019-05-03"
   },
   {
     idTask: 4,
     title: "Уложить спать кота",
-    date: "2019-05-09"
+    date: "2019-05-04"
   }
 ];
 
@@ -28,6 +27,7 @@ const dateInput = document.getElementById("inputDateTask");
 
 buttonAddTask.addEventListener("click", addTask);
 document.querySelector(".listItem").addEventListener("click", updatCheck, true);
+document.getElementById("sortOptions").addEventListener("change", sortItem);
 
 function addTask() {
   let idTask = ID();
@@ -41,12 +41,12 @@ function addTask() {
       title,
       date
     });
-    drawingItem(title, date, idTask);
+    addItem(title, date, idTask);
     clearInput();
   }
 }
 
-var ID = function() {
+var ID = function () {
   return Math.random()
     .toExponential(36)
     .substr(2, 9);
@@ -107,8 +107,64 @@ function deleteTasks(node, key) {
   todoList.splice(todoList.findIndex(item => item.idTask === key), 1);
 }
 
-window.onload = function() {
+function sortItem() {
+  const sortSelector = document.getElementById("sortOptions");
+  const selectInd = sortSelector.options.selectedIndex;
+  console.log(selectInd);
+  switch (selectInd) {
+    case 1: // сортировка по алфавиту
+      todoList.sort(function (a, b) {
+        if (a.title > b.title) {
+          return 1;
+        }
+        return 0;
+      });
+      clearTodoLiest();
+      break;
+
+    case 2: // сортировка по алфавиту в обратном порядке
+      todoList.sort(function (a, b) {
+        if (a.title < b.title) {
+          return -1;
+        }
+        return 0;
+      });
+      clearTodoLiest();
+
+      break;
+    case 3: // сортировка по дате
+      todoList.sort(function (a, b) {
+        return dateFilter(a.date) - dateFilter(b.date);
+      });
+      clearTodoLiest();
+      break;
+
+    case 4: // сортировка по дате в обратном порядке
+      todoList.sort(function (a, b) {
+        return dateFilter(b.date) - dateFilter(a.date);;
+      });
+      clearTodoLiest();
+      break;
+  }
+}
+
+
+function dateFilter(s) {
+  let a = s.split(/-|\//);
+  return new Date(a[2], a[1] - 1, a[0]);
+}
+
+function clearTodoLiest() {
+  listItem.innerHTML = "";
+  loadItem();
+}
+
+function loadItem() {
   for (let key = 0; key < todoList.length; key++) {
     addItem(todoList[key].title, todoList[key].date, todoList[key].idTask);
   }
+
+}
+window.onload = function () {
+  loadItem();
 };
