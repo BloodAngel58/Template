@@ -1,0 +1,61 @@
+.input-task {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.single-todo__item {
+
+    display: flex;
+    justify-content: space-between;
+    background-color: cadetblue;
+    margin: 9px;
+    padding: 15px;
+    align-items: baseline;
+}
+
+.single-todo__text {
+    margin: 10px;
+    padding: 10px;
+    justify-content: left;
+}
+
+.single-todo__date {
+    margin: 10px;
+    padding: 10px;
+    justify-content: right;
+}
+
+.single-todo__check {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    justify-content: left;
+}
+
+body {
+
+    width: 40%;
+    margin: 0 auto;
+}
+
+.todo-item__checked {
+    position: relative;
+
+}
+
+.single-todo__item.todo-item__checked:after {
+
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 3px;
+    right: 50px;
+    top: 48%;
+    background-color: red;
+    align-items: baseline;
+
+
+}
