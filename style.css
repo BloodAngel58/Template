@@ -3,7 +3,7 @@
     justify-content: center;
     padding: 10px;
     margin: 10px;
-    border: 1px solid black;
+    border: 5px solid black;
 }
 
 .input-task.input-task__itm1 {
@@ -78,7 +78,7 @@ body {
     justify-content: center;
     padding: 10px;
     margin: 10px;
-    border: 1px solid black;
+    border: 5px solid blueviolet;
 }
 
 .task-item__filter {
@@ -86,7 +86,7 @@ body {
     justify-content: center;
     padding: 10px;
     margin: 10px;
-    border: 1px solid black;
+    border: 5px solid green;
     align-items: baseline;
     justify-content: center;
 }
