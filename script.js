@@ -1,4 +1,5 @@
-const todoList = [{
+const todoList = [
+  {
     idTask: 1,
     title: "Попить кофе",
     date: "2019-05-03"
@@ -43,8 +44,9 @@ function addTask() {
     drawingItem(title, date, idTask);
     clearInput();
   }
-};
-var ID = function () {
+}
+
+var ID = function() {
   return Math.random()
     .toExponential(36)
     .substr(2, 9);
@@ -53,9 +55,9 @@ var ID = function () {
 function clearInput() {
   textInput.value = "";
   dateInput.value = "";
-};
+}
 
-function drawingItem(title, date, key) {
+function addItem(title, date, key) {
   const check = document.createElement("input");
   const divText = document.createElement("div");
   const divDate = document.createElement("div");
@@ -82,7 +84,7 @@ function drawingItem(title, date, key) {
   todoItem.appendChild(divDate);
   todoItem.appendChild(deleteButton);
   listItem.appendChild(todoItem);
-};
+}
 
 function updatCheck(event) {
   const target = event.target;
@@ -98,15 +100,15 @@ function updatCheck(event) {
   if (target.type == "submit") {
     deleteTasks(event.target.parentNode, key);
   }
-};
+}
 
 function deleteTasks(node, key) {
   node.remove();
   todoList.splice(todoList.findIndex(item => item.idTask === key), 1);
-};
+}
 
-window.onload = function () {
+window.onload = function() {
   for (let key = 0; key < todoList.length; key++) {
-    drawingItem(todoList[key].title, todoList[key].date, todoList[key].idTask);
+    addItem(todoList[key].title, todoList[key].date, todoList[key].idTask);
   }
 };
