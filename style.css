@@ -6,6 +6,19 @@
     border: 1px solid black;
 }
 
+.input-task.input-task__itm1 {
+    flex-grow: 3;
+}
+
+.input-task.input-task__itm2 {
+    flex-grow: 2;
+}
+
+.input-task.input-task__itm3 {
+    flex-grow: 1;
+}
+
+
 .single-todo__item {
 
     display: flex;
@@ -66,4 +79,14 @@ body {
     padding: 10px;
     margin: 10px;
     border: 1px solid black;
+}
+
+.task-item__filter {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+    align-items: baseline;
+    justify-content: center;
 }

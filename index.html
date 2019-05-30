@@ -8,13 +8,17 @@
 
 <body>
     <div class="input-task">
-        <div>
+        <div class="input-task__itm1">
             <input type="text" id="inputTextTask" placeholder="New Task">
+        </div>
+        <div class="input-task__itm2">
             <input type="date" id="inputDateTask">
         </div>
-        <div>
+        <div class="input-task__itm3">
             <button id="buttonAddTask">Жмякни</button>
         </div>
+    </div>
+
 
     </div>
     <div class="task-item__sort">
@@ -25,6 +29,14 @@
             <option value="date">недавно добавленные</option>
             <option value="reverseDate">старые</option>
         </select>
+    </div>
+    <div class="task-item__filter">
+        <div>
+            <input type="text" class="input-text__filter" id="filterText" placeholder="Фильтр по тексту">
+        </div>
+        <div>
+            <input type="date" class="input-date__filter" id="filterDate">
+        </div>
     </div>
     <h1>Todo List</h1>
     <div id="todoListItem" class="listItem">
