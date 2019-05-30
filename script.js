@@ -110,12 +110,11 @@ function deleteTasks(node, key) {
 function sortItem() {
   const sortSelector = document.getElementById("sortOptions");
   const selectInd = sortSelector.options.selectedIndex;
-  console.log(selectInd);
   switch (selectInd) {
     case 1: // сортировка по алфавиту
       todoList.sort(function (a, b) {
-        if (a.title > b.title) {
-          return 1;
+        if (a.title < b.title) {
+          return -1;
         }
         return 0;
       });
@@ -124,7 +123,7 @@ function sortItem() {
 
     case 2: // сортировка по алфавиту в обратном порядке
       todoList.sort(function (a, b) {
-        if (a.title < b.title) {
+        if (a.title > b.title) {
           return -1;
         }
         return 0;
