@@ -6,15 +6,15 @@
     border: 5px solid black;
 }
 
-.input-task.input-task__itm1 {
+.input-task.input-task-div__column_1 {
     flex-grow: 3;
 }
 
-.input-task.input-task__itm2 {
+.input-task.input-task-div__column_2 {
     flex-grow: 2;
 }
 
-.input-task.input-task__itm3 {
+.input-task.input-task-div__column_3 {
     flex-grow: 1;
 }
 
@@ -49,7 +49,7 @@
 }
 
 body {
-
+    background-color: #DCDCDC;
     width: 50%;
     margin: 0 auto;
 }

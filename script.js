@@ -1,24 +1,4 @@
-const todoList = [{
-    idTask: 1,
-    title: "Попить кофе",
-    date: "2019-05-01"
-  },
-  {
-    idTask: 2,
-    title: "Погладить кота",
-    date: "2019-05-02"
-  },
-  {
-    idTask: 3,
-    title: "Накормить кота",
-    date: "2019-05-03"
-  },
-  {
-    idTask: 4,
-    title: "Уложить кота спать",
-    date: "2019-05-04"
-  }
-];
+let todoList = [];
 
 const listItem = document.getElementById("todoListItem");
 const buttonAddTask = document.getElementById("buttonAddTask");
@@ -44,9 +24,13 @@ function addTask() {
       date
     });
     addItem(title, date, idTask);
+    addTaskFromStorage();
     clearInput();
     sortItem();
   }
+}
+function addTaskFromStorage() {
+  localStorage.setItem("todo", JSON.stringify(todoList));
 }
 
 function sortItem() {
@@ -56,38 +40,37 @@ function sortItem() {
   const cloneTodoList = [...todoList];
   switch (selectInd) {
     case 0: // сортировка по алфавиту
-      clearTodoLiest(todoList);
+      clearTodoList(todoList);
       break;
     case 1: // сортировка по алфавиту
-      cloneTodoList.sort(function (a, b) {
+      cloneTodoList.sort(function(a, b) {
         return collator.compare(a.title, b.title);
       });
-      clearTodoLiest(cloneTodoList);
+      clearTodoList(cloneTodoList);
       break;
 
     case 2: // сортировка по алфавиту в обратном порядке
-      cloneTodoList.sort(function (a, b) {
+      cloneTodoList.sort(function(a, b) {
         return collator.compare(b.title, a.title);
       });
-      clearTodoLiest(cloneTodoList);
+      clearTodoList(cloneTodoList);
 
       break;
     case 3: // сортировка по дате
-      cloneTodoList.sort(function (a, b) {
+      cloneTodoList.sort(function(a, b) {
         return dateFilter(a.date) - dateFilter(b.date);
       });
-      clearTodoLiest(cloneTodoList);
+      clearTodoList(cloneTodoList);
       break;
 
     case 4: // сортировка по дате в обратном порядке
-      cloneTodoList.sort(function (a, b) {
-        return dateFilter(b.date) - dateFilter(a.date);;
+      cloneTodoList.sort(function(a, b) {
+        return dateFilter(b.date) - dateFilter(a.date);
       });
-      clearTodoLiest(cloneTodoList);
+      clearTodoList(cloneTodoList);
       break;
   }
 }
-
 
 function filter() {
   let filterText = document.getElementById("filterText").value;
@@ -96,22 +79,24 @@ function filter() {
   if (filterText || filterDate) {
     const filterArr = todoList.filter(task => {
       if (filterText && filterDate) {
-        return ~task.title.indexOf(filterText) && task.date === filterDate;
+        if (
+          task.title.indexOf(filterText) != -1 &&
+          (task.date === filterDate) != -1
+        )
+          return task.title && task.date === filterDate;
       } else if (filterText) {
-        return ~task.title.indexOf(filterText);
+        if (task.title.indexOf(filterText) != -1) return task.title;
       } else if (filterDate) {
         return task.date === filterDate;
       }
-
     });
-    clearTodoLiest(filterArr);
-
+    clearTodoList(filterArr);
   } else if (!filterText && !filterDate) {
-    clearTodoLiest(todoList);
+    clearTodoList(todoList);
   }
 }
 
-var ID = function () {
+var ID = function() {
   return Math.random()
     .toExponential(36)
     .substr(2, 9);
@@ -170,16 +155,15 @@ function updatCheck(event) {
 function deleteTasks(node, key) {
   node.remove();
   todoList.splice(todoList.findIndex(item => item.idTask === key), 1);
+  addTaskFromStorage();
 }
-
-
 
 function dateFilter(s) {
   let a = s.split(/-|\//);
   return new Date(a[2], a[1] - 1, a[0]);
 }
 
-function clearTodoLiest(taskList) {
+function clearTodoList(taskList) {
   listItem.innerHTML = "";
   loadItem(taskList);
 }
@@ -190,6 +174,13 @@ function loadItem(taskList) {
   }
 }
 
-window.onload = function () {
+function downloadFromStorage() {
+  todoList = JSON.parse(localStorage.getItem("todo"));
   loadItem(todoList);
+}
+
+window.onload = function() {
+  if (localStorage.getItem("todo") != undefined) {
+    downloadFromStorage();
+  }
 };
