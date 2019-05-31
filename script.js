@@ -12,14 +12,20 @@ document.querySelector(".listItem").addEventListener("click", updatCheck, true);
 document.getElementById("sortOptions").addEventListener("change", sortItem);
 
 function showError(container, errorMessage) {
-  let divErrorMassage = errorMessage;
+  let divErrorMassage = document.createElement("div");
+  divErrorMassage.innerHTML = errorMessage;
+  divErrorMassage.classList.add("error");
   if (container.classList != "error") {
     container.classList.add("error");
-    console.log(errorMessage);
-    console.log(container);
-    container.parentNode.appendChild(document.createTextNode(divErrorMassage));
-    console.log(container.parentNode);
-  } //else container.parentNode.removeChild(document.createTextNode);
+    container.parentNode.appendChild(divErrorMassage);
+  }
+}
+
+function deletError(textNode, dateNode) {
+  textNode.parentNode.removeChild(textNode.parentNode.children[1]);
+  dateNode.parentNode.removeChild(dateNode.parentNode.children[1]);
+  textNode.classList = "";
+  dateNode.classList = "";
 }
 
 function addTask() {
@@ -29,10 +35,10 @@ function addTask() {
   let date = dateInput.value;
   if (!textInput.value || !dateInput.value) {
     if (!textInput.value) {
-      showError(dateInput, "Отсутствует ТЕКС.");
+      showError(textInput, "Отсутствует ТЕКС.");
     }
     if (!dateInput.value) {
-      showError(textInput, "Отсутствует ДАТА.");
+      showError(dateInput, "Отсутствует ДАТА.");
     }
   } else validate = true;
   if (validate) {
@@ -45,6 +51,7 @@ function addTask() {
     addTaskFromStorage();
     clearInput();
     sortItem();
+    deletError(textInput, dateInput);
   }
 }
 function addTaskFromStorage() {
@@ -198,7 +205,7 @@ function downloadFromStorage() {
 }
 
 window.onload = function() {
-  if (localStorage.getItem("todo") !== undefined) {
+  if (localStorage.getItem("todo")) {
     downloadFromStorage();
   }
 };

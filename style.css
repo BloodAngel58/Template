@@ -8,7 +8,14 @@
 
 .error {
     color: red;
+    display: flex;
 }
+
+.no-error {
+    color: green;
+    display: none;
+}
+
 
 .error-message {
     text-decoration-color: red;
@@ -57,7 +64,7 @@
 
 body {
     background-color: #DCDCDC;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
 }
 
