@@ -180,7 +180,7 @@ function downloadFromStorage() {
 }
 
 window.onload = function() {
-  if (localStorage.getItem("todo") != undefined) {
+  if (localStorage.getItem("todo") !== undefined) {
     downloadFromStorage();
   }
 };
