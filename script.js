@@ -11,13 +11,31 @@ buttonAddTask.addEventListener("click", addTask);
 document.querySelector(".listItem").addEventListener("click", updatCheck, true);
 document.getElementById("sortOptions").addEventListener("change", sortItem);
 
+function showError(container, errorMessage) {
+  let divErrorMassage = errorMessage;
+  if (container.classList != "error") {
+    container.classList.add("error");
+    console.log(errorMessage);
+    console.log(container);
+    container.parentNode.appendChild(document.createTextNode(divErrorMassage));
+    console.log(container.parentNode);
+  } //else container.parentNode.removeChild(document.createTextNode);
+}
+
 function addTask() {
+  let validate = false;
   let idTask = ID();
   let title = textInput.value;
   let date = dateInput.value;
-  if (title == "" || date == "") {
-    alert("ERROR! Все полня должны быть заполнены");
-  } else {
+  if (!textInput.value || !dateInput.value) {
+    if (!textInput.value) {
+      showError(dateInput, "Отсутствует ТЕКС.");
+    }
+    if (!dateInput.value) {
+      showError(textInput, "Отсутствует ДАТА.");
+    }
+  } else validate = true;
+  if (validate) {
     todoList.push({
       idTask,
       title,

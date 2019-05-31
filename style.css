@@ -6,6 +6,14 @@
     border: 5px solid black;
 }
 
+.error {
+    color: red;
+}
+
+.error-message {
+    text-decoration-color: red;
+}
+
 .input-task.data-input__text {
     flex-grow: 3;
 }
