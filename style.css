@@ -3,7 +3,34 @@
     justify-content: center;
     padding: 10px;
     margin: 10px;
-    border: 1px solid black;
+    border: 5px solid black;
+}
+
+.error {
+    color: red;
+    display: flex;
+}
+
+.no-error {
+    color: green;
+    display: none;
+}
+
+
+.error-message {
+    text-decoration-color: red;
+}
+
+.input-task.data-input__text {
+    flex-grow: 3;
+}
+
+.input-task.data-input__date {
+    flex-grow: 2;
+}
+
+.input-task.data-input__button {
+    flex-grow: 1;
 }
 
 .single-todo__item {
@@ -36,8 +63,8 @@
 }
 
 body {
-
-    width: 40%;
+    background-color: #DCDCDC;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -56,6 +83,22 @@ body {
     top: 48%;
     background-color: red;
     align-items: baseline;
+}
 
+.task-item__sort {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+    border: 5px solid blueviolet;
+}
 
+.task-item__filter {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+    border: 5px solid green;
+    align-items: baseline;
+    justify-content: center;
 }
