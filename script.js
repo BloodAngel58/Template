@@ -83,14 +83,14 @@ function sortItem() {
       break;
     case 3: // сортировка по дате
       cloneTodoList.sort(function(a, b) {
-        return dateFilter(a.date) - dateFilter(b.date);
+        return dateFilter(b.date) - dateFilter(a.date);
       });
       clearTodoList(cloneTodoList);
       break;
 
     case 4: // сортировка по дате в обратном порядке
       cloneTodoList.sort(function(a, b) {
-        return dateFilter(b.date) - dateFilter(a.date);
+        return dateFilter(a.date) - dateFilter(b.date);
       });
       clearTodoList(cloneTodoList);
       break;
@@ -185,7 +185,7 @@ function deleteTasks(node, key) {
 
 function dateFilter(s) {
   let a = s.split(/-|\//);
-  return new Date(a[2], a[1] - 1, a[0]);
+  return new Date(a[0], a[1] - 1, a[2]);
 }
 
 function clearTodoList(taskList) {
